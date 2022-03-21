@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="obj file loader"
         WindowStartupLocation="CenterScreen"
-        Height="135" Width="400"
-        MaxHeight="135" MaxWidth="800">
+        Height="130" Width="400"
+        MaxHeight="130" MaxWidth="800">
     <StackPanel Margin="10">
         <Grid>
             <Grid.ColumnDefinitions >
@@ -18,11 +18,27 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBox Grid.Column="0" Grid.Row="0" Height="22" Text="{Binding FileName, Mode=TwoWay}"/>
             <Button Content="打开文件" Grid.Column="1" Grid.Row="0" Height="22" Width="75" Click="SelectFilePath"/>
             <Button Content="查看3D模型" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,15" Height="30" Click="Open3dViwer"/>
+            <!--<TextBlock Grid.Row="2">
+                使用说明：<LineBreak/>
+                haha 
+
+            </TextBlock>-->
+            
+            <!--<Viewbox Margin="10,0" Grid.Row="2">
+                <StackPanel Orientation="Vertical" Width="400">
+                    <TextBlock x:Name="subHeaderText" 
+                   FontSize="20" 
+                   TextWrapping="Wrap" 
+                   Foreground="Black"
+                   Text="使用说明：\n现在 " />
+                </StackPanel>
+            </Viewbox>-->
         </Grid>
     </StackPanel>
 </Window>

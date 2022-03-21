@@ -29,6 +29,7 @@ public:
 
     Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
     void Draw(Shader& shader, GLenum mode = GL_TRIANGLES);
+    void DrawMatcap(Shader& shader, unsigned matcapId);
     void PrintFaceIndices();
 
 private:

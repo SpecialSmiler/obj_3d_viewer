@@ -38,31 +38,51 @@ void Mesh::setupMesh()
     glBindVertexArray(0);
 }
 
+extern unsigned int whiteTextureId;
 void Mesh::Draw(Shader& shader, GLenum mode)
 {
     unsigned int diffuseNr = 1;
     unsigned int specularNr = 1;
-    for (unsigned int i = 0; i < textures.size(); i++)
+    if (textures.size() > 0)
     {
-        glActiveTexture(GL_TEXTURE0 + i); // activate proper texture unit before binding
-        // retrieve texture number (the N in diffuse_textureN)
-        string number;
-        string name = textures[i].type;
-        if (name == "texture_diffuse")
-            number = std::to_string(diffuseNr++);
-        else if (name == "texture_specular")
-            number = std::to_string(specularNr++);
+        for (unsigned int i = 0; i < textures.size(); i++)
+        {
+            glActiveTexture(GL_TEXTURE0 + i); // activate proper texture unit before binding
+            // retrieve texture number (the N in diffuse_textureN)
+            string number;
+            string name = textures[i].type;
+            if (name == "texture_diffuse")
+                number = std::to_string(diffuseNr++);
+            else if (name == "texture_specular")
+                number = std::to_string(specularNr++);
 
-        //std::cout << ("material." + name + number) << std::endl;
-        shader.setFloat(("material." + name + number).c_str(), i);
-        glBindTexture(GL_TEXTURE_2D, textures[i].id);
+            //std::cout << ("material." + name + number) << std::endl;
+            shader.setFloat(("material." + name + number).c_str(), i);
+            glBindTexture(GL_TEXTURE_2D, textures[i].id);
+        }
+        glActiveTexture(GL_TEXTURE0);
     }
-    glActiveTexture(GL_TEXTURE0);
+    else
+    {
+        glActiveTexture(0);
+        glBindTexture(GL_TEXTURE_2D, whiteTextureId);
+    }
 
     // draw mesh
     glBindVertexArray(VAO);
     glDrawElements(mode, indices.size(), GL_UNSIGNED_INT, 0);
 
+    glBindVertexArray(0);
+}
+
+void Mesh::DrawMatcap(Shader& shader, unsigned matcapId)
+{
+    //std::cout << textures.size() << std::endl;
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, matcapId);
+    shader.setFloat("matcap", matcapId);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
 

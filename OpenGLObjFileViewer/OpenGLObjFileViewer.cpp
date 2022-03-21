@@ -22,6 +22,10 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+unsigned int whiteTextureId;
+unsigned int matcapTextureId;
+
+
 enum class ViewportShaderMode
 {
 	Lit,
@@ -80,9 +84,11 @@ int main(int argc, char* argv[])
 
 	std::string cwd = std::filesystem::current_path().string();
 	// scene init
-	string objPath = cwd + "\\Resource\\Monkey.obj";
+	string objPath = cwd + "\\Resource\\Monkey_smooth.obj";
 	//string objPath = "F:\\Model\\Sample\\temp\\Monkey.obj";
+	//string objPath = "F:\\Model\\Sample\\SphereCube.obj";
 	//string objPath = "F:\\Model\\Sample\\Cylinder.obj";
+	//string objPath = "F:\\Model\\Sample\\Monkey_sub.obj";
 	//string objPath = "F:\\Model\\Sketchfab\\survival-guitar-backpack-low-poly\\backpack\\backpack.obj";
 
 	if (argv[1])
@@ -91,14 +97,24 @@ int main(int argc, char* argv[])
 	}
 	Model objModel(objPath);
 
+	//Matcap texture
+	std::string whiteTexturePath = "\\Resource\\solid_diffuse.png";
+	std::string matcapFilePath = "\\Resource\\matcap_metal.png";
+	whiteTextureId = TextureFromFile(cwd + whiteTexturePath);
+	matcapTextureId = TextureFromFile(cwd + matcapFilePath);
+
+
 	// Shader
 	std::string litVertShader = cwd + "\\GLSL\\Lit.vert";
 	std::string litFragShader = cwd + "\\GLSL\\Lit.frag";
 	std::string UnlitVertShader = cwd + "\\GLSL\\Unlit.vert";
 	std::string UnlitFragShader = cwd + "\\GLSL\\Unlit.frag";
+	std::string MatcapVertShader = cwd + "\\GLSL\\Matcap.vert";
+	std::string MatcapFragShader = cwd + "\\GLSL\\Matcap.frag";
 	std::cout << cwd << endl;
 	Shader litShader(litVertShader.c_str(), litFragShader.c_str());
 	Shader unlitShader(UnlitVertShader.c_str(), UnlitFragShader.c_str());
+	Shader matcapShader(MatcapVertShader.c_str(), MatcapFragShader.c_str());
 	Shader wireframeShader(UnlitVertShader.c_str(), UnlitFragShader.c_str());
 
 	// pre-render setting
@@ -149,7 +165,11 @@ int main(int argc, char* argv[])
 		}
 		else if (currentViewportShader == ViewportShaderMode::MatCap)
 		{
-				
+			matcapShader.use();
+			matcapShader.setMat4("model", model);
+			matcapShader.setMat4("view", view);
+			matcapShader.setMat4("projection", projection);
+			objModel.DrawMatcap(matcapShader, matcapTextureId);
 		}
 		else if (currentViewportShader == ViewportShaderMode::Wireframe)
 		{

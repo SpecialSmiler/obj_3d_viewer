@@ -6,8 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(SolutionDir)x64\Release&quot; &quot;$(OutDir)&quot; /i /y&#xD;&#xA;xcopy &quot;$(SolutionDir)x64\Release\GLSL&quot; &quot;$(OutDir)GLSL&quot; /i /y" />
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy &quot;$(SolutionDir)x64\Release&quot; &quot;$(OutDir)&quot; /i /y&#xD;&#xA;xcopy &quot;$(SolutionDir)x64\Release\GLSL&quot; &quot;$(OutDir)GLSL&quot; /i /y&#xD;&#xA;xcopy &quot;$(SolutionDir)x64\Release\Resource&quot; &quot;$(OutDir)Resource&quot; /i /y" />
   </Target>
 
 </Project>

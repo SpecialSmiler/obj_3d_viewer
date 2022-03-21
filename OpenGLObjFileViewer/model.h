@@ -16,12 +16,14 @@
 using namespace std;
 
 unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
+unsigned int TextureFromFile(const string& path);
 
 class Model
 {
 public:
     Model(string const& path);
     void Draw(Shader& shader, GLenum mode = GL_TRIANGLES);
+    void DrawMatcap(Shader& shader, unsigned int matcapId);
     void DrawWireframe(Shader& shader);
     void PrintMeshesIndices();
 
