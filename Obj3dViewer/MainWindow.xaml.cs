@@ -13,12 +13,12 @@ namespace Obj3dViewer
 	/// </summary>
 	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
-		const string openglViewerProgram = "D:\\ProgramProject\\My Projects\\Obj3dViewer\\x64\\Release\\OpenGLObjFileViewer.exe";
+		const string openglViewerProgram = ".\\OpenGLObjFileViewer.exe";
 		public MainWindow()
 		{
 			DataContext = this;
 			InitializeComponent();
-			FileName = "F:\\Model\\Sample\\Monkey_sub.obj";
+			FileName = "";
 		}
 
 		private string _fileName;

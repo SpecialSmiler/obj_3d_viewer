@@ -85,6 +85,7 @@ int main(int argc, char* argv[])
 	std::string cwd = std::filesystem::current_path().string();
 	// scene init
 	string objPath = cwd + "\\Resource\\Monkey_smooth.obj";
+	//string objPath = "F:\\Model\\Sample\\新建文件夹\\Monkey.obj";
 	//string objPath = "F:\\Model\\Sample\\temp\\Monkey.obj";
 	//string objPath = "F:\\Model\\Sample\\SphereCube.obj";
 	//string objPath = "F:\\Model\\Sample\\Cylinder.obj";
