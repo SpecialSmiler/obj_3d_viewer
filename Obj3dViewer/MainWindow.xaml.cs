@@ -13,7 +13,7 @@ namespace Obj3dViewer
 	/// </summary>
 	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
-		const string openglViewerProgram = ".\\OpenGLObjFileViewer.exe";
+		const string openglViewerProgram = "\\OpenGLObjFileViewer.exe";
 		public MainWindow()
 		{
 			DataContext = this;

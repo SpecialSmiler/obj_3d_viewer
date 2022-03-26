@@ -84,12 +84,13 @@ int main(int argc, char* argv[])
 
 	std::string cwd = std::filesystem::current_path().string();
 	// scene init
-	string objPath = cwd + "\\Resource\\Monkey_smooth.obj";
+	//string objPath = cwd + "\\Resource\\Monkey_smooth.obj";
 	//string objPath = "F:\\Model\\Sample\\新建文件夹\\Monkey.obj";
 	//string objPath = "F:\\Model\\Sample\\temp\\Monkey.obj";
 	//string objPath = "F:\\Model\\Sample\\SphereCube.obj";
-	//string objPath = "F:\\Model\\Sample\\Cylinder.obj";
+	string objPath = "F:\\Model\\Sample\\Cylinder.obj";
 	//string objPath = "F:\\Model\\Sample\\Monkey_sub.obj";
+	//string objPath = "F:\\Model\\Sample\\Monkey.obj";
 	//string objPath = "F:\\Model\\Sketchfab\\survival-guitar-backpack-low-poly\\backpack\\backpack.obj";
 
 	if (argv[1])
@@ -132,7 +133,7 @@ int main(int argc, char* argv[])
 
 	//glDisable(GL_POLYGON_OFFSET_FILL);
 	//glEnable(GL_POLYGON_OFFSET_LINE); // doesn't work for GL_LINES, only work for GL_LINE
-	//glPolygonOffset(1.0f, 1. 0f);
+	//glPolygonOffset(1.0f, 1.0f);
 	//glDisable(GL_POLYGON_OFFSET_LINE);
 	// render 
 	// ------------------------------

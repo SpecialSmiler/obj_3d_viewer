@@ -2,6 +2,8 @@
 
 受Skechfab的网页3D查看器启发，想着自己试试写一个3d模型查看器。正好最近正在学习OpenGL，写了一个练习一下。
 
+本项目只是作为学习OpenGL过程中的一个练习，有关C++和GLSL的绝大部分代码都参考自[LearnOpenGL](https://learnopengl.com/)，受益良多。
+
 ### 环境
 
 Windows 10 x64
@@ -29,7 +31,7 @@ assimp：https://github.com/assimp/assimp
 
 ### 按键说明
 
-**Orbit Turntable模式:**
+**Orbit模式:**
 
 `鼠标左键`：以物体为中心旋转视角
 
